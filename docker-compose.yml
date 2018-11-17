@@ -1,0 +1,22 @@
+version: "3"
+services:
+  php:
+    build: './image/'
+    volumes:
+     - ./src:/var/www/html/
+    ports:
+      - '30000:80'
+
+  adminer:
+    image: adminer
+    ports:
+      - '50000:8080'
+
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_USER=moi
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=adminer
+
